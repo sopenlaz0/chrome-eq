@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link type="text/css" rel="stylesheet" href="popup.css" />
+    <link type="text/css" rel="stylesheet" href="modal/modal.css" />
+  </head>
+
+  <body class="body">
+    <div class="container" id="content">
+      <div class="controls-main">
+        <table>
+          <tr>
+            <td class="button-set">
+              <table>
+                <tr>
+                  <td class="toggle">
+                    <a
+                      href="#"
+                      class="button toggle"
+                      id="toggle"
+                      title="Toggle ON | OFF"
+                      >ON | OFF</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td class="reset">
+                    <a
+                      href="#"
+                      class="button reset"
+                      id="reset"
+                      title="Reset to default"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 48 48">
+                        <path
+                          d="M 9.8212753,13.365952 H 34.12766 V 20.455317 L 44.25532,10.327657 34.12766,0.199997 V 7.2893585 H 3.744681 V 22.987232 H 9.8212753 Z"
+                        />
+                        <path
+                          d="M 38.178723,34.634044 13.872338,34.634037 13.872339,27.544678 3.744681,37.672337 13.872339,47.8 13.87234,40.710639 44.255317,40.710637 44.255318,25.012763 38.178724,25.012764 Z"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <canvas class="chart" id="chart"></canvas>
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+      <div class="controls-sliders">
+        <div class="slider master">
+          <input
+            id="ch-eq-slider-0"
+            orient="vertical"
+            eq="master"
+            type="range"
+            min="0"
+            step="0.01"
+            max="2"
+            value="1"
+          /><label>Preamp</label>
+        </div>
+        <div class="slider empty"></div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-1"
+            orient="vertical"
+            eq="32"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>32</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-2"
+            orient="vertical"
+            eq="64"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>64</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-3"
+            orient="vertical"
+            eq="125"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>125</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-4"
+            orient="vertical"
+            eq="250"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>250</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-5"
+            orient="vertical"
+            eq="500"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>500</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-6"
+            orient="vertical"
+            eq="1000"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>1k</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-7"
+            orient="vertical"
+            eq="2000"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>2k</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-8"
+            orient="vertical"
+            eq="4000"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>4k</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-9"
+            orient="vertical"
+            eq="8000"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>8k</label>
+        </div>
+        <div class="slider">
+          <input
+            id="ch-eq-slider-10"
+            orient="vertical"
+            eq="16000"
+            type="range"
+            min="-12"
+            step="0.01"
+            max="12"
+            value="0"
+          /><label>16k</label>
+        </div>
+      </div>
+      <div class="controls-options">
+        <table class="controls-table">
+          <tr>
+            <td class="mono">
+              <input type="checkbox" id="channels" /><label for="channels"
+                >Mono</label
+              >
+            </td>
+           
+            <td class="spacer"></td>
+            <td title="Equalizer controls">
+              <select class="button presets" id="presets-select">
+                <optgroup label="Action">
+                  <option id="preset_save" value="action::save">Save</option>
+                  <option id="preset_save_as" value="action::save-as"
+                    >Save as</option
+                  >
+                  <option id="preset-delete" value="action::delete"
+                    >Delete</option
+                  >
+                  <option id="preset_reset" value="action::reset">Reset</option>
+                </optgroup>
+                <optgroup
+                  label="My presets"
+                  id="presets-select-user"
+                ></optgroup>
+                <optgroup
+                  label="Predefined presets"
+                  id="presets-select-predefined"
+                ></optgroup>
+                <optgroup label="Reset">
+                  <option id="preset_reset_all" value="action::reset-all"
+                    >Reset to default</option
+                  >
+                </optgroup>
+              </select>
+            </td>
+          
+            
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="modal" id="modal-prompt">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-message"></div>
+        <div class="modal-input"><input type="text" class="input" /></div>
+        <div class="modal-buttons">
+          <a href="#" class="button ok">Yes</a>
+          <a href="#" class="button notok">No</a>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="modal-confirm">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-message"></div>
+        <div class="modal-buttons">
+          <a href="#" class="button ok">Yes</a>
+          <a href="#" class="button notok">No</a>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <script type="text/javascript" src="modal/modal.js"></script>
+    <script type="text/javascript" src="chart/chart.js"></script>
+    <script type="text/javascript" src="sliders/sliders.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+  </body>
+</html>

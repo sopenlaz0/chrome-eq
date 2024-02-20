@@ -1,1 +1,1 @@
-# chrome-eq
+# chrome-simple-eq
