@@ -3,6 +3,7 @@
 {
   var core = {
     log: false,
+    //default script data
     script: document.currentScript,
     hostname: function (url) {
       if ("blob:" === url.substring(0, 5)) {
@@ -166,7 +167,7 @@
   };
   //
   core.equalizer.storage = JSON.parse(core.script.dataset.data);
-  //
+  //start playing when it gets play
   window.addEventListener(
     "play",
     function (e) {
@@ -175,7 +176,7 @@
     },
     true
   );
-  //
+  //listen to toggle on or off
   window.addEventListener(
     "message",
     function (e) {

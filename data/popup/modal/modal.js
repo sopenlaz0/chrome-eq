@@ -1,3 +1,4 @@
+// a simple modal getting ok and not ok 
 var modal = {
   confirm: function (text, ok, notok) {
     ok = ok ? ok : function () {};
@@ -25,6 +26,8 @@ var modal = {
       notok();
     };
   },
+
+  //propt funtion getting text ok not ok 
   prompt: function (text, ok, notok) {
     ok = ok ? ok : function () {};
     notok = notok ? notok : function () {};
