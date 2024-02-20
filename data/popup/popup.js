@@ -1,3 +1,4 @@
+//provides the functionality for users to interact with presets, modify equalizer settings, and manage configurations within the Chrome extension's popup window.
 config.selectedpreset = null;
 
 config.sliderinputs = document.querySelectorAll('input[type="range"]');
