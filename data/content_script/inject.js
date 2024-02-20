@@ -1,3 +1,5 @@
+//handling both incoming messages from the web page it's injected into and commands from the extension's background script. 
+
 window.addEventListener(
   "message",
   function (e) {
@@ -18,6 +20,7 @@ window.addEventListener(
   false
 );
 
+//listen to toggle and set
 chrome.runtime.onMessage.addListener(function (request) {
   if (request.action === "app-toggle") {
     window.postMessage(
@@ -45,6 +48,7 @@ chrome.runtime.onMessage.addListener(function (request) {
   }
 });
 
+//after loading inject another inject .js to to webpage 
 chrome.runtime.sendMessage({ action: "page-load" }, function (url) {
   let error = chrome.runtime.lastError;
   /*  */

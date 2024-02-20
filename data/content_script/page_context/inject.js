@@ -1,3 +1,5 @@
+// targets audio and video elements within web pages, applying audio equalization effects through the Web Audio API
+
 {
   var core = {
     log: false,
