@@ -1,6 +1,5 @@
-//defines a utility for creating custom slider controls. 
-
 var sliders = {
+  // Slider configuration
   width: 30,
   height: 150,
   canvas: null,
@@ -9,13 +8,13 @@ var sliders = {
     ratio: window.devicePixelRatio > 1 ? 2 : 1,
   },
 
-  // initializes the slider by drawing the slider's visual representation 
+  // Initialize the slider by drawing its visual representation
   prepare: function () {
+    // Create canvas element
     let head = document.head;
     let step = sliders.height / 10;
     let shorter = [1, 2, 3, 4, 6, 7, 8, 9];
     let longer = [0, sliders.height / 2, sliders.height - 1];
-    /*  */
     sliders.canvas = document.createElement("canvas");
     sliders.canvas.width = sliders.pixel.ratio * sliders.width;
     sliders.canvas.height = sliders.pixel.ratio * sliders.height;
@@ -23,7 +22,8 @@ var sliders = {
     sliders.context.beginPath();
     sliders.context.strokeStyle = "rgba(0,0,0,0.2)";
     sliders.context.lineWidth = sliders.pixel.ratio * 1;
-    //make it move 
+
+    // Draw slider lines
     for (let i = 0; i < longer.length; i++) {
       let to = sliders.pixel.ratio * longer[i] + sliders.context.lineWidth / 2;
       sliders.context.moveTo(sliders.pixel.ratio * 2, to);
@@ -31,20 +31,19 @@ var sliders = {
       sliders.context.moveTo(sliders.pixel.ratio * 20, to);
       sliders.context.lineTo(sliders.pixel.ratio * 28, to);
     }
-    /*  */
     for (let i = 0; i < shorter.length; i++) {
-      let to =
-        sliders.pixel.ratio * (shorter[i] * step) +
-        sliders.context.lineWidth / 2;
+      let to = sliders.pixel.ratio * (shorter[i] * step) + sliders.context.lineWidth / 2;
       sliders.context.moveTo(sliders.pixel.ratio * 7, to);
       sliders.context.lineTo(sliders.pixel.ratio * 10, to);
       sliders.context.moveTo(sliders.pixel.ratio * 20, to);
       sliders.context.lineTo(sliders.pixel.ratio * 23, to);
     }
-    /*  */
+
+    // Stroke lines and close path
     sliders.context.stroke();
     sliders.context.closePath();
-    /*  */
+
+    // Create CSS style for slider
     const style = document.createElement("style");
     style.setAttribute("type", "text/css");
     head.appendChild(style);
