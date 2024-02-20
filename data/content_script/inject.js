@@ -36,7 +36,6 @@ chrome.runtime.sendMessage({ action: "page-load" }, function (url) {
   if (url) {
     chrome.storage.local.get(null, function (data) {
       let hostname = new URL(url).hostname;
-      let valid = data.whitelist.indexOf(hostname) === -1;
       if (valid) {
         let script = document.getElementById("audio-equalizer-script");
         if (!script) {
